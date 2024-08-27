@@ -96,7 +96,7 @@ function Products() {
 <div className='row grid place-content-center relative'>
 
 <form >
-        <div className="text-center  mx-auto my-5 d-flex align-items-center m-5">
+        <div className="text-center  mx-auto my-5 d-flex align-items-center m-10">
           <input type="search" className="form-control w-full rounded "
             placeholder="search... "
             value={filterText}

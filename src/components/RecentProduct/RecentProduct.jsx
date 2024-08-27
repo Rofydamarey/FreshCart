@@ -83,39 +83,57 @@ if (isLoading) {
 // getProducts()
 // }, [])
 
-  return (        <>
+  return (      <>
+
     <div className='row grid place-content-center relative'>
-        {data?.data?.data.map((product) => (
+    
+    <form >
+            <div className="text-center  mx-auto my-5 d-flex align-items-center m-10">
+              <input type="search" className="form-control w-full rounded "
+                placeholder="search... "
+                value={filterText}
+                onChange={(e)=>setfilterText(e.target.value)}
+              />
+            </div>
+          </form>
+        {data?.data?.data.map((product) => {
+           if (
+            product.title.toLowerCase().indexOf(filterText.toLowerCase()) === -1
+          ) {
+            return;
+          }
+               return(
                 <div key={product.id} className='sm:w-1/3 md:w-1/4 px-8 py-3 '>
-                   <div className="product p-4 my-3 hover:shadow-green-500 " >
-                   <NavLink to={`productdetails/${product.id}/${product.category.name}`}>
-
-                        <img src={product.imageCover} className='w-full' alt="" />
-                        <div className="inner text-center">
-                            <h3 className=' text-green-600 font-semibold font-sans'>{product.category.name}</h3>
-                            <h3 className='mb-2 font-sans font-semibold'>{product.title.split(' ').slice(0, 2).join(' ')}</h3>
-                          <div className='flex justify-between p-3'>
-                          <span>{product.price} EGP</span>
-                          <span>{product.ratingsAverage} <i className='fas fa-star text-yellow-500'></i></span>
-                          </div>
-                          </div>
-                   </NavLink>
-
-                   <button style={{ color: wishListIds?.includes(product.id) ? 'red' : 'black' }}
+                <div className="product p-4 my-3 hover:shadow-green-500 " >
+                <NavLink to={`/productdetails/${product.id}/${product.category.name}`}>
+    
+                     <img src={product.imageCover} className='w-full' alt="" />
+                     <div className="inner text-center">
+                         <h3 className=' text-green-600 font-semibold font-sans'>{product.category.name}</h3>
+                         <h3 className='mb-2 font-sans font-semibold'>{product.title.split(' ').slice(0, 2).join(' ')}</h3>
+                       <div className='flex justify-between p-3'>
+                       <span>{product.price} EGP</span>
+                       <span>{product.ratingsAverage} <i className='fas fa-star text-yellow-500'></i></span>
+                       </div>
+                       </div>
+                </NavLink>
+                <button style={{ color: wishListIds?.includes(product.id) ? 'red' : 'black' }}
                       onClick={()=>addToWL(product.id , product)} className={ `heart-btn w-25 m-0 float-end  `}>
                         <i  className="fa-solid fa-heart m-0 text-2xl   "></i>
                     </button>
                        <button onClick={()=>addToCart(product.id)} className='btn hover:bg-emerald-600 text-white' >
                        {loading && currentId==product.id ? <i className='fas fa-spinner fa-spin'></i>:("Add +")}
                          </button>
-                            
-                    </div>
-                </div>
-            ))  
-
+                     
+                         
+                 </div>
+             </div>
+               )
+    })  
+    
         }
     </div>
-</>
+    </>
   )
 
 }
