@@ -110,17 +110,18 @@ let validationSchema=Yup.object().shape({
   :null}
 
 
-  <div>
+  <div className='text-center py-3'>
   <button type="submit" className="text-white me-3 bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none
        focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-600
         dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
 
         {IsLoading ?<i className="fa-solid fa-spinner"></i>:"submit"}
         </button>
-        <Link  to={'/Register'}><span className='text-blue-400 underline '>Don't you have an account?Register </span> </Link>
+        <Link  to={'/Register'}><div className='text-main text-center py-2 '>Don't you have an account?Register </div> </Link>
+  <Link className=" text-main fs-6 text-center py-2" to={"/forgetpassword"}>  forgot password </Link>
+
        
-  </div>
-  <Link className=" text-main fs-6 " to={"/forgetpassword"}><strong>click here</strong> if you forgot your password </Link>
+  </div >
   </div>
 
  </form>
